@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ScaleLSD: Scalable Deep Line Segment Detection Streamlined">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScaleLSD: Scalable Deep Line Segment Detection Streamlined</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+  
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ScaleLSD: Scalable Deep Line Segment Detection Streamlined</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://calmke.github.io/">Zeran Ke</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://icetttb.github.io/">Bin Tan</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jszy.whu.edu.cn/zhengxianwei/zh_CN/index.htm">Xianwei Zheng</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://shenyujun.github.io/">Yujun Shen</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.ece.ncsu.edu/ivmcl/">Tianfu Wu</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://xuenan.net/">Nan Xue</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Wuhan University,</span>
+            <span class="author-block"><sup>2</sup>Ant Group,</span>
+            <span class="author-block"><sup>2</sup>NC State University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png"
+           alt="Teaser image."/>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper studies the problem of Line Segment Detection (LSD) for the characterization of line geometry in images, with the aim of learning a domain-agnostic robust LSD model that works well for any natural images. With the focus of scalable self-supervised learning of LSD, we revisit and streamline the fundamental designs of (deep and non-deep) LSD approaches to have a high-performing and efficient LSD learner, dubbed as ScaleLSD, for the curation of line geometry at scale from over 10M unlabeled real-world images. Our ScaleLSD works very well to detect much more number of line segments from any natural images even than the pioneered non-deep LSD approach, having a more complete and accurate geometric characterization of images using line segments. Experimentally, our proposed ScaleLSD is comprehensively testified under zero-shot protocols in detection performance, single-view 3D geometry estimation, two-view line segment matching, and multiview 3D line mapping, all with excellent performance obtained. Based on the thorough evaluation, our ScaleLSD is observed to be the first deep approach that outperforms the pioneered non-deep LSD in all aspects we have tested, significantly expanding and reinforcing the versatility of the line geometry of images.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper frameworks. -->
+    <div class="columns is-centered">
+      <img src="./static/images/frameworks.png"
+           alt="Teaser image."
+           style="width: 75%; height: auto;"/>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Detection. -->
+    <div class="container is-centered has-text-centered">
+      <h2 class="title is-3">Detection</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item d1">
+          <img src="./static/images/detection1.png"
+                alt="image1."/>
+        </div>
+        <div class="item d2">
+          <img src="./static/images/detection2.png"
+                alt="image2."/>
+        </div>
+        <div class="item d3">
+          <img src="./static/images/detection3.png"
+                alt="image3."/>
+        </div>
+        <div class="item d4">
+          <img src="./static/images/detection4.png"
+                alt="image4."/>
+        </div>
+      </div>
+    </div>
+
+    <!-- VP Estimation. -->
+    <div class="container is-centered has-text-centered">
+      <h2 class="title is-3">VP Estimation</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item vp1">
+          <img src="./static/images/vp1.png"
+                alt="image1."/>
+        </div>
+        <div class="item vp2">
+          <img src="./static/images/vp2.png"
+                alt="image2."/>
+        </div>
+        <div class="item vp3">
+          <img src="./static/images/vp3.png"
+                alt="image3."/>
+        </div>
+        <div class="item vp4">
+          <img src="./static/images/vp4.png"
+                alt="image4."/>
+        </div>
+        <div class="item vp5">
+          <img src="./static/images/vp5.png"
+                alt="image5."/>
+        </div>
+        <div class="item vp6">
+          <img src="./static/images/vp6.png"
+                alt="image6."/>
+        </div>
+        <div class="item vp7">
+          <img src="./static/images/vp7.png"
+                alt="image7."/>
+        </div>
+        <div class="item vp8">
+          <img src="./static/images/vp8.png"
+                alt="image8."/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Line Matching. -->
+    <div class="container is-centered has-text-centered">
+      <h2 class="title is-3">Line Matching</h2>
+    <div class="columns is-centered">
+      <img src="./static/images/line_matching1.png"
+           alt="lm1."
+           style="width: 50%; height: auto;"/>
+      <img src="./static/images/line_matching2.png"
+          alt="lm1."
+          style="width: 50%; height: auto;"/>
+    </div>
+      <!-- <div id="results-carousel" class="carousel results-carousel">
+        <div class="item lm1">
+          <img src="./static/images/line_matching1.png"
+                alt="image1."/>
+        </div>
+        <div class="item lm2">
+          <img src="./static/images/line_matching2.png"
+                alt="image2."/>
+        </div>
+        <div class="item lm2">
+          <img src="./static/images/line_matching2.png"
+                alt="image2."/>
+        </div>
+        <div class="item lm2">
+          <img src="./static/images/line_matching2.png"
+                alt="image2."/>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- 3D Reconstruction. -->
+    <div class="container is-centered has-text-centered">
+      <h2 class="title is-3">3D Reconstruction</h2>
+      <!-- <div class="content has-text-justified">
+        <p>
+          Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+          viewpoint such as a stabilized camera by playing back the training deformations.
+        </p>
+      </div> -->
+      <div class="content has-text-centered">
+        <video id="replay-video"
+                controls
+                muted
+                preload
+                playsinline
+                width="100%">
+          <source src="./static/videos/scalelsd.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">References</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Some related works can be found at <a href="https://github.com/cherubicXN/hawp">HAWPv3</a>, <a href="https://github.com/cvg/DeepLSD">DeepLSD</a>.
+          </p>
+          <p>
+            1. Rafael Grompone von Gioi, J´er´emie Jakubowicz, JeanMichel Morel, and Gregory Randall. LSD: A fast line segment detector with a false detection control. IEEE TPAMI, 32(4):722–732, 2010.
+          </p>
+          <p>
+            2. Nan Xue, Tianfu Wu, Song Bai, Fu-Dong Wang, Gui-Song Xia, Liangpei Zhang, and Philip H.S. Torr. Holistically-attracted wireframe parsing: From supervised to self-supervised learning. IEEE TPAMI, 45(12):14727–14744, 2023.
+          </p>
+          <p>
+            3. R´emi Pautrat, Daniel Barath, Viktor Larsson, Martin R .Oswald, and Marc Pollefeys. Deeplsd: Line segment detection and refinement with deep image gradients. In CVPR, pages 17327–17336. IEEE, 2023.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{ScaleLSD2025,
+  author    = {Zeran Ke, Bin Tan, Xianwei Zheng, Yujun Shen, Tianfu Wu and Nan Xue},
+  title     = {ScaleLSD: Scalable Deep Line Segment Detection Streamlined},
+  journal   = {CVPR},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">here</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
