@@ -23,7 +23,7 @@ inline int CUDA_GET_BLOCKS(const int N) {
 __global__ void encode_kernel(const int nthreads, const float* lines,
                            const int input_height, const int input_width, const int num,
                            const int height, const int width, float* map,
-                           bool* label, float* tmap)
+                           int* label, float* tmap)
 {
     CUDA_1D_KERNEL_LOOP(index, nthreads){
         int w = index % width;
@@ -38,12 +38,13 @@ __global__ void encode_kernel(const int nthreads, const float* lines,
 
         float px = (float) w;
         float py = (float) h;
+        // precompute scale factors once per thread
+        const float xs = (float)width  /(float)input_width;
+        const float ys = (float)height /(float)input_height;
         float min_dis = 1e30;
         int minp = -1;
         bool flagp = true;
         for(int i = 0; i < num; ++i) {
-            float xs = (float)width  /(float)input_width;
-            float ys = (float)height /(float)input_height;
             float x1 = lines[4*i  ]*xs;
             float y1 = lines[4*i+1]*ys;
             float x2 = lines[4*i+2]*xs;
@@ -98,7 +99,10 @@ __global__ void encode_kernel(const int nthreads, const float* lines,
             }
         }
         // label[label_index+minp*height*width] = flagp;
-
+        if (flagp)
+            label[label_index] = minp;
+        else
+            label[label_index] = -1;
     }
 }
 
@@ -114,18 +118,18 @@ std::tuple<at::Tensor, at::Tensor, at::Tensor> lsencode_cuda(
 {
     auto map = at::zeros({6,height,width}, lines.options());
     auto tmap = at::zeros({1,height,width}, lines.options());
-    auto label = at::zeros({1,height,width}, lines.options().dtype(at::kBool));
+    auto label = at::zeros({1,height,width}, lines.options().dtype(at::kInt));
     auto nthreads = height*width;
 
     cudaStream_t stream = at::cuda::getCurrentCUDAStream();
 
-    float* map_data = map.data<float>();
-    float* tmap_data = tmap.data<float>();
-    bool*  label_data = label.data<bool>();
+    float* map_data = map.data_ptr<float>();
+    float* tmap_data = tmap.data_ptr<float>();
+    int*  label_data = label.data_ptr<int>();
 
     encode_kernel<<<CUDA_GET_BLOCKS(nthreads), CUDA_NUM_THREADS >>>(
             nthreads,
-            lines.contiguous().data<float>(),
+            lines.contiguous().data_ptr<float>(),
             input_height, input_width,
             num_lines,
             height, width,
